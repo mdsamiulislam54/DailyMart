@@ -9,14 +9,14 @@ const Login = () => {
   return (
     <div>
         <ul className='flex items-center gap-5'>
-        <li><Link to="/login"> <Cart/> </Link></li>
+        <li className='lg:block hidden'><Link to="/login"> <Cart/> </Link></li>
         <li>
-          <Link className="text-xl font-medium" >Login</Link>
+          <Link to={'/login'} className="text-xl font-medium" >Login</Link>
         </li>
         <li>
           <Link className="text-xl font-medium" >Regestion</Link>
         </li>
-        <li>
+        <li className='lg:block hidden'>
           <Link className="text-xl font-medium" ><DarkModeButton /></Link>
         </li>
 

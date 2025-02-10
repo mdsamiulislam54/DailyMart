@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-Primary: #ff5733;
-  --color-Secondary:#33b5ff;
-  --color-Accent:#ffd700;
-  --color-Background: #fafafa;
-  --color-Text: #333333;
-  --container-Container: 1200px;
-  --font-Oswald:"Oswald", serif;
+  --color-primary: #ff5733;
+  --color-secondary:#33b5ff;
+  --color-accent:#ffd700;
+  --color-background: #fafafa;
+  --color-text: #333333;
+  --container-container: 1200px;
+  --font-Oswald:"Poppins", serif;
 }

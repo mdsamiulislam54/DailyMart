@@ -8,10 +8,10 @@ const MenuItem = () => {
     <div>
       <ul className="flex items-center gap-10">
         <li>
-          <Link  className="text-xl font-medium">Home</Link>
+          <Link to={'/'}  className="text-xl font-medium">Home</Link>
         </li>
         <li>
-          <Link className="text-xl font-medium" >About </Link>
+          <Link to={'/about'} className="text-xl font-medium" >About </Link>
         </li>
         <li>
           <Link className="text-xl font-medium" >Prodcts</Link>
