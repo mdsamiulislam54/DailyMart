@@ -7,6 +7,7 @@ import Home from "./componants/Home/Home";
 
 import LoginPage from  "./componants/UserAuthentication/LoginPage";
 import Registraion from "./componants/UserAuthentication/Registraion";
+import UserProfile from "./componants/UserProfile/UserProfile";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/registration" element={<Registraion/>}/>
+          <Route path="/userprofile" element={<UserProfile/>}/>
           {/* <Route path="contact" element={<Contact />} />  */}
         </Route>
       </Routes>

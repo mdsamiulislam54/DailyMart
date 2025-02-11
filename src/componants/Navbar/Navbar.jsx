@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <div
-    className={` sticky top-0 w-full mx-auto px-4 shadow-lg ${
+    className={` sticky top-0 w-full mx-auto px-4 z-50 shadow-lg ${
       darkMode ? "bg-text text-white" : " text-text"
     } ${ scrollY > 0 ? 'bg-background':'bg-transparent'} ` }
   >

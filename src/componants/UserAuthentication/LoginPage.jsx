@@ -1,12 +1,76 @@
-import React from "react";
+import React, { useContext ,useRef,useState,useEffect} from "react";
 import LoginPagesImages from "/src/assets/loginImages.png";
-import { Link } from "react-router";
+import { Link,useNavigate} from "react-router-dom";
 import { FcBusinesswoman } from "react-icons/fc";
 import { useDarkMode } from "../ContextApi/DarkModeApi";
 import { BiLogoGooglePlusCircle, BiLogoFacebookCircle } from "react-icons/bi";
+import { getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { CreateuserAuthenticationContext } from "../ContextApi/UserAuthentication";
 
 const LoginPage = () => {
   const { darkMode } = useDarkMode();
+  const {loginuser,Userinfo} = useContext(CreateuserAuthenticationContext)
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [sucessMessage, setSucessMessage] = useState("");
+  const clearRef =useRef(null)
+  const navigate =  useNavigate();
+
+   useEffect(() => {
+      if (sucessMessage || errorMessage) {
+        const timer = setTimeout(() => {
+          setSucessMessage("");
+          setErrorMessage("");
+        }, 5000);
+        return () => clearTimeout(timer);
+      }
+    }, [sucessMessage, errorMessage]);
+
+    const handleLogin =  (e) => {
+      e.preventDefault();
+      const form = clearRef.current
+      const email = e.target.email.value;
+      const password = e.target.password.value;
+
+      loginuser(email,password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setSucessMessage("Login Success");
+        console.log(user)
+        navigate("/userprofile")
+        updateProfile(user,{
+          email: user.email,
+         
+        })
+        // .then(()=>{
+        //   Userinfo({
+        //     email: user.email,
+        //     name : user.displayName,
+        //     uid: user.uid,
+        //     photoURL : user.photoURL
+        //   })
+        // })
+        form.reset()
+
+      }).catch((error)=>{
+        setErrorMessage("Invalid Email or Password",error);
+
+      })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className={` py-4 h-[100%] text-white ${darkMode ? "bg-text" : ""}`}>
       <div className="lg:w-container mx-auto">
@@ -19,7 +83,7 @@ const LoginPage = () => {
             </div>
           </div>
           <div className="lg:shadow-sm rounded-2xl  lg:w-6/12 w-full">
-            <form action="" className=" bg-transparent  p-10">
+            <form onSubmit={handleLogin} ref={clearRef} action="" className=" relative bg-transparent  p-10">
               <div className="flex flex-col gap-5">
                 <h2 className="flex justify-center items-center  ">
                   <span className="border p-2 rounded-full shadow-2xl">
@@ -57,7 +121,7 @@ const LoginPage = () => {
                       <input type="checkbox" name="" id="checkbox" />
                     </span>
                     <label
-                      for="checkbox"
+                      htmlFor="checkbox"
                       className={`text-sm ${
                         darkMode ? "text-white" : "text-text"
                       }`}
@@ -138,6 +202,16 @@ const LoginPage = () => {
                       Register Now
                     </Link>
                   </p>
+                  <div className="absolute top-0 left-0">
+                  {errorMessage && (
+                    <p className="text-red-500 text-center mt-2 ">{errorMessage}</p>
+                  )}
+                  {sucessMessage && (
+                    <p className="text-green-500 text-center mt-2">
+                      {sucessMessage}
+                    </p>
+                  )}
+                </div>
                 </div>
               </div>
             </form>

@@ -1,28 +1,43 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import DarkModeButton from "../DarkModeButton/DarkModeButton";
-import Cart from './Cart';
+import Cart from "./Cart";
+import { CreateuserAuthenticationContext } from "../ContextApi/UserAuthentication";
 
 
 const Login = () => {
+  const { user } = useContext(CreateuserAuthenticationContext);
   return (
     <div>
-        <ul className='flex items-center gap-5'>
-        <li className='lg:block hidden'><Link to="/login"> <Cart/> </Link></li>
-        <li>
-          <Link to={'/login'} className="text-xl font-medium" >Login</Link>
+      <ul className="flex items-center gap-5">
+        <Cart />
+        {user ? (
+        <div>
+          <p>{user.name}</p>
+        </div>
+        ):(
+          <div>
+          <li>
+            <Link to={"/login"} className="text-xl font-medium">
+              Login
+            </Link>
+          </li>
+          <li>
+            <Link to={"/registration"} className="text-xl font-medium">
+              Sign Up
+            </Link>
+          </li>
+        </div>
+        )}
+        <li className="lg:block hidden">
+          <Link className="text-xl font-medium">
+            <DarkModeButton />
+          </Link>
         </li>
-        <li>
-          <Link to={'/registration'} className="text-xl font-medium" >Sign Up</Link>
-        </li>
-        <li className='lg:block hidden'>
-          <Link className="text-xl font-medium" ><DarkModeButton /></Link>
-        </li>
-
-        </ul>
+      </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
