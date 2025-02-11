@@ -29,7 +29,7 @@ const Navbar = () => {
     } ${ scrollY > 0 ? 'bg-background':'bg-transparent'} ` }
   >
     <nav className=" py-3 ">
-    <div className="lg:max-w-7xl mx-auto">
+    <div className="lg:w-container mx-auto">
         <div className="flex items-center justify-between">
           <Logo />
           <div className="lg:block hidden">
@@ -47,7 +47,7 @@ const Navbar = () => {
                 isOpen ? "rotate-180" : "rotate-0"
               }`}
             >
-              {isOpen ? <TfiClose /> : <TfiAlignRight />}
+              {isOpen ? <TfiClose className={`${darkMode ? 'text-white':'text-text'}`} /> : <TfiAlignRight  className={`${darkMode ? 'text-white':'text-text'}`} />}
             </button>
           </div>
 

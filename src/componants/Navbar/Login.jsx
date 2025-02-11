@@ -14,7 +14,7 @@ const Login = () => {
           <Link to={'/login'} className="text-xl font-medium" >Login</Link>
         </li>
         <li>
-          <Link className="text-xl font-medium" >Regestion</Link>
+          <Link to={'/registration'} className="text-xl font-medium" >Sign Up</Link>
         </li>
         <li className='lg:block hidden'>
           <Link className="text-xl font-medium" ><DarkModeButton /></Link>

@@ -1,73 +1,151 @@
-import React from 'react'
-import LoginPagesImages from '/src/assets/loginImages.png'
-import { Link } from 'react-router'
+import React from "react";
+import LoginPagesImages from "/src/assets/loginImages.png";
+import { Link } from "react-router";
 import { FcBusinesswoman } from "react-icons/fc";
-import { useDarkMode } from '../ContextApi/DarkModeApi';
+import { useDarkMode } from "../ContextApi/DarkModeApi";
+import { BiLogoGooglePlusCircle, BiLogoFacebookCircle } from "react-icons/bi";
 
 const LoginPage = () => {
-  const {darkMode} = useDarkMode()
+  const { darkMode } = useDarkMode();
   return (
-    <div className={` py-4 text-white ${
-      darkMode ?  "bg-text" :"bg-linear-to-r from-primary to-secondary"
-    }`}>
-       <div className='w-container mx-auto'>
-       <div className='flex gap-5 justify-around items-center'>
-          
-          <div className=''>
-            <div className="container">
-             <picture>
-                <img className='w-full ' src={LoginPagesImages} alt="" />
-             </picture>
+    <div className={` py-4 h-[100%] text-white ${darkMode ? "bg-text" : ""}`}>
+      <div className="lg:w-container mx-auto">
+        <div className="flex lg:flex-row flex-col-reverse  gap-5 lg:justify-around justify-center items-center">
+          <div className="">
+            <div className="flex items-center justify-center">
+              <picture>
+                <img className="lg:w-full  " src={LoginPagesImages} alt="" />
+              </picture>
             </div>
           </div>
-          <div className='shadow-2xl w-4/12'>
-          <form action="" className=' bg-transparent  p-10'>
-                <div className="flex flex-col gap-5">
-                    <h2 className='flex justify-center items-center  '>
-                        <span className='border p-2 rounded-full shadow-2xl'><FcBusinesswoman size={70}/></span>
-                    </h2>
-                    <label for="exampleInputEmail1">Email address :</label>
-                    <input
-                    className='border-1 outline-none p-2 rounded-2xl text-lg '
-                    type="email" name='email' placeholder='Pleace Enter Your Email' id='exampleInputEmail1' />
+          <div className="lg:shadow-sm rounded-2xl  lg:w-6/12 w-full">
+            <form action="" className=" bg-transparent  p-10">
+              <div className="flex flex-col gap-5">
+                <h2 className="flex justify-center items-center  ">
+                  <span className="border p-2 rounded-full shadow-2xl">
+                    <FcBusinesswoman size={70} />
+                  </span>
+                </h2>
 
-                    <label for="exampleInputPassword">Password :</label>
+                <input
+                  className={`border outline-none p-2 rounded-2xl text-lg ${
+                    darkMode
+                      ? " text-white placeholder-white"
+                      : " text-gray-900 placeholder-text"
+                  }`}
+                  type="email"
+                  name="email"
+                  placeholder=" Enter Your Email"
+                  id="exampleInputEmail1"
+                />
 
-                    <input 
-                     className='border-1 outline-none p-2 rounded-2xl text-lg '
-                    type="password" name='password' placeholder='Pleace Enter Your Password' id='exampleInputPassword' />
+                <input
+                  className={`border outline-none p-2 rounded-2xl text-lg ${
+                    darkMode
+                      ? " text-white placeholder-white"
+                      : " text-text placeholder-text "
+                  }`}
+                  type="password"
+                  name="password"
+                  placeholder=" Enter Your Password"
+                  id="exampleInputPassword"
+                />
 
-                    <div className='flex justify-between'>
-                        <button type='button' className='flex items-center gap-2 '>
-                            <span><input type="checkbox" name="" id="checkbox" /></span>
-                            <label for="checkbox" className='text-sm text-gray-600' >Show password</label>
-                        </button>
-                        <button>
-                            <Link className={`hover:underline  transition-all duration-300 text-sm
-                              ${darkMode ? 'hover:text-secondary': ' hover:text-text' }
-                              `}> Forget Password</Link>
-                        </button>
-                    </div>
-                  
-                    <input 
-                    className='w-full border border-white mb-6 p-2 rounded-2xl  font-bold 
-                    text-xl cursor-pointer hover:bg-linear-to-r from-primary to-secondary transition-all duration-300'
-                    type="submit"  value='Login' />
-
-                    <div>
-                        <p className='text-sm text-center text-gray-600 tracking-wide'>Don't have an account? <Link className={`underline
-                        f text-white transition-all duration-300
-                        ${darkMode ? 'hover:text-secondary': ' hover:text-text' }
-                        `}>Register Now</Link></p>
-                    </div>
+                <div className="flex justify-between">
+                  <button type="button" className="flex items-center gap-2 ">
+                    <span>
+                      <input type="checkbox" name="" id="checkbox" />
+                    </span>
+                    <label
+                      for="checkbox"
+                      className={`text-sm ${
+                        darkMode ? "text-white" : "text-text"
+                      }`}
+                    >
+                      Show password
+                    </label>
+                  </button>
+                  <button>
+                    <Link
+                      className={`text-secondary  transition-all duration-300 text-sm
+                              ${
+                                darkMode
+                                  ? "hover:hover:underline"
+                                  : " hover:underline"
+                              }
+                              `}
+                    >
+                      {" "}
+                      Forget Password
+                    </Link>
+                  </button>
                 </div>
+
+                <input
+                  className={`w-full   mb-6 p-2 rounded-2xl  font-bold 
+                    text-xl cursor-pointer  transition-all duration-300 ${
+                      darkMode
+                        ? " hover:bg-gray-300 bg-background text-text"
+                        : "hover:bg-primary border border-text text-text hover:text-white hover:border-transparent"
+                    }`}
+                  type="submit"
+                  value="Login"
+                />
+
+                <div>
+                  <button
+                    type="button"
+                    className={`flex items-center gap-3 w-full justify-center p-2 rounded-2xl text-xl font-medium mb-5 cursor-pointer  transition-all duration-300 ${
+                      darkMode
+                        ? "text-text bg-white hover:bg-gray-300"
+                        : "hover:bg-primary border border-text text-text hover:text-white hover:border-transparent"
+                    }`}
+                  >
+                    <span>
+                      <BiLogoGooglePlusCircle size={30} />
+                    </span>{" "}
+                    Login with Google
+                  </button>
+                  <button
+                    type="button"
+                    className={`flex items-center gap-3 w-full justify-center p-2 rounded-2xl text-xl font-medium transition-all duration-300 ${
+                      darkMode
+                        ? "text-text bg-white hover:bg-gray-300"
+                        : "hover:bg-primary border border-text text-text hover:text-white hover:border-transparent"
+                    }`}
+                  >
+                    <span>
+                      <BiLogoFacebookCircle size={30} />
+                    </span>{" "}
+                    Login with Facebook
+                  </button>
+                </div>
+
+                <div>
+                  <p
+                    className={`text-sm text-center ${
+                      darkMode ? "text-white" : "text-text"
+                    } tracking-wide`}
+                  >
+                    Don't have an account?{" "}
+                    <Link
+                    to={'/registration'}
+                      className={`
+                        f text-secondary transition-all duration-300
+                        ${darkMode ? "hover:underline" : " hover:underline"}
+                        `}
+                    >
+                      Register Now
+                    </Link>
+                  </p>
+                </div>
+              </div>
             </form>
           </div>
-          
         </div>
-       </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;
