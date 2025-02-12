@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import DarkModeButton from "../DarkModeButton/DarkModeButton";
 import Cart from "./Cart";
 import { CreateuserAuthenticationContext } from "../ContextApi/UserAuthentication";
+import { CgProfile } from "react-icons/cg";
 
 
 const Login = () => {
@@ -14,10 +15,12 @@ const Login = () => {
         <Cart />
         {user ? (
         <div>
-          <p>{user.name}</p>
+          <Link to={'/userprofile'}>
+            <span><CgProfile/></span>
+          </Link>
         </div>
         ):(
-          <div>
+          <div className="flex gap-5">
           <li>
             <Link to={"/login"} className="text-xl font-medium">
               Login

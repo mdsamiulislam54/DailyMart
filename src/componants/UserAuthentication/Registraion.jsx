@@ -8,7 +8,7 @@ import { CreateuserAuthenticationContext } from "../ContextApi/UserAuthenticatio
 import { updateProfile } from "firebase/auth";
 
 const Registraion = () => {
-  const { UserInfo, registeruser, user } = useContext(
+  const { UserInfo, registeruser, user,userCustomData } = useContext(
     CreateuserAuthenticationContext
   );
   const { darkMode } = useDarkMode();
@@ -36,8 +36,7 @@ const Registraion = () => {
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
     const email = e.target.email.value;
-    const Nameall = `${firstName} ${lastName}`;
-    console.log(Nameall)
+   
 
     if (password !== confirmPassword) {
       setError("Password and Confirm Password should be the same");
@@ -48,6 +47,12 @@ const Registraion = () => {
       const user = result.user;
       console.log(user);
       setSuccessMessage("Registration Successful!");
+      userCustomData({
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+
+      })
       updateProfile(user, {
         displayName: `${firstName} ${lastName}`,
         
@@ -55,7 +60,7 @@ const Registraion = () => {
         UserInfo({
           name: user.displayName,
           email: user.email,
-          phoneNumber: phoneNumber,
+          
           photo: user.photoURL,
           uid: user.uid,
         });

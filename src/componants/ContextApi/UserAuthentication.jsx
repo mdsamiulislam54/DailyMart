@@ -1,5 +1,5 @@
 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
 import React, { createContext, useEffect, useState } from 'react'
 import auth from '../../Firebase/Firebase'
 
@@ -8,6 +8,9 @@ export const CreateuserAuthenticationContext = createContext()
 const UserAuthentication = ({children}) => {
 
     const [user, setUser] = useState(null)
+    const [sucessMsg , setSuccessMsg] = useState()
+    const [errorMsg, setErrorMsg] = useState()
+    const [customData , setCustomData] = useState({})
 
     const registeruser = (email,password)=>{
         return createUserWithEmailAndPassword(auth,email,password)
@@ -15,7 +18,14 @@ const UserAuthentication = ({children}) => {
     const loginuser = (email,password)=>{
         return signInWithEmailAndPassword(auth,email,password)
     }
-
+const logout = () => {
+    signOut(auth)
+    .then(()=>{
+        setSuccessMsg("Sign out Successful!")
+    }).catch(()=>{
+        setErrorMsg('Sign Out Unsuccessfully!')
+    })
+}
     // const Userinfo = (profile)=>{
     //     setUser(profile)
     // }
@@ -36,7 +46,11 @@ const UserAuthentication = ({children}) => {
         })
     },[])
 
-const userinfomation = {registeruser,user, loginuser}
+    const userCustomData = (data)=>{
+        setCustomData(data)
+    }
+
+const userinfomation = {registeruser,user, loginuser,logout,sucessMsg,errorMsg,userCustomData,customData}
 
 
 
