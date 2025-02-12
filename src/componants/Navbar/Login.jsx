@@ -12,11 +12,12 @@ const Login = () => {
   return (
     <div>
       <ul className="flex items-center gap-5">
-        <Cart />
+       
         {user ? (
         <div>
-          <Link to={'/userprofile'}>
-            <span><CgProfile/></span>
+          <Link to={'/userprofile'} className="flex flex-col justify-center items-center">
+            <span><CgProfile size={28}/></span>
+            <span className="text-sm">{user.name}</span>
           </Link>
         </div>
         ):(

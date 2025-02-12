@@ -14,7 +14,7 @@ const MobilMenuItem = () => {
           <Link className="text-xl font-medium">Home</Link>
         </li>
         <li>
-          <Link className="text-xl font-medium">About </Link>
+          <Link className="text-xl font-medium">Cetagori </Link>
         </li>
         <li>
           <Link className="text-xl font-medium">Prodcts</Link>
@@ -27,6 +27,7 @@ const MobilMenuItem = () => {
         </li>
         <Login/>
       </ul>
+
     </div>
   );
 };

@@ -1,7 +1,8 @@
 
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import React, { createContext, useEffect, useState } from 'react'
 import auth from '../../Firebase/Firebase'
+import { useNavigate } from 'react-router'
 
 export const CreateuserAuthenticationContext = createContext()
 
@@ -11,6 +12,7 @@ const UserAuthentication = ({children}) => {
     const [sucessMsg , setSuccessMsg] = useState()
     const [errorMsg, setErrorMsg] = useState()
     const [customData , setCustomData] = useState({})
+    const navigate = useNavigate()
 
     const registeruser = (email,password)=>{
         return createUserWithEmailAndPassword(auth,email,password)
@@ -18,10 +20,20 @@ const UserAuthentication = ({children}) => {
     const loginuser = (email,password)=>{
         return signInWithEmailAndPassword(auth,email,password)
     }
+    // login with google
+    const loginGoogleHandler = ()=>{
+        const GoogleProvider = new  GoogleAuthProvider()
+        return signInWithPopup(auth,GoogleProvider)
+    }
+
+
+
 const logout = () => {
     signOut(auth)
     .then(()=>{
         setSuccessMsg("Sign out Successful!")
+        alert("Sign out Successful!")
+        navigate('/')
     }).catch(()=>{
         setErrorMsg('Sign Out Unsuccessfully!')
     })
@@ -50,7 +62,7 @@ const logout = () => {
         setCustomData(data)
     }
 
-const userinfomation = {registeruser,user, loginuser,logout,sucessMsg,errorMsg,userCustomData,customData}
+const userinfomation = {registeruser,user, loginuser,logout,sucessMsg,errorMsg,userCustomData,customData,loginGoogleHandler}
 
 
 

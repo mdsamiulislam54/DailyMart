@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+
+
 @theme {
   --color-primary: #ff5733;
   --color-secondary:#33b5ff;
@@ -7,5 +9,6 @@
   --color-background: #fafafa;
   --color-text: #333333;
   --container-container: 1200px;
-  --font-Oswald:"Poppins", serif;
+  --font-Poppins:"Poppins", serif;
+  
 }

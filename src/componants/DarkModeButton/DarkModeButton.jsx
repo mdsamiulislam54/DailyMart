@@ -8,10 +8,11 @@ const DarkModeButton = () => {
   return (
     <button
       onClick={toggleDarkMode}
-      className="flex relative items-center justify-between px-10 py-4 bg-text rounded-3xl border-2 "
+      className="flex relative items-center justify-between px-8 py-2  rounded-3xl border border-gray-400 "
     >
       
       <FaSun
+      size={10}
         className={` absolute top-[50%] translate-[-50%] left-3  text-primary transition-opacity duration-300  ${
           darkMode ? "opacity-30" : "opacity-100"
         }`}
@@ -19,12 +20,14 @@ const DarkModeButton = () => {
 
      
       <FaMoon
+      size={10}
         className={` absolute top-[50%] translate-[-50%] right-0  text-primary transition-opacity duration-300 ${
           darkMode ? "opacity-100" : "opacity-30"
         }`}
       />
     </button>
-  );
+ 
+  )
 };
 
 export default DarkModeButton;

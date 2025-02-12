@@ -9,6 +9,7 @@ import Cart from "./Cart";
 import MobilMenuItem from "./MobilMenuItem";
 import { useState ,useEffect} from "react";
 import { useWindowScrollY } from "../ContextApi/WindowScrollY";
+import TopNavbar from "./TopNavbar";
 
 const Navbar = () => {
   const { darkMode } = useDarkMode();
@@ -30,17 +31,20 @@ const Navbar = () => {
   >
     <nav className=" py-3 ">
     <div className="lg:w-container mx-auto">
+      {/* TopNavber */}
+      <TopNavbar/>
+      {/* TopNavber */}
         <div className="flex items-center justify-between">
-          <Logo />
+          
           <div className="lg:block hidden">
             <MenuItem />
           </div>
           <div className="lg:block hidden">
-            <Login />
+            <Cart/>
           </div>
 
           <div className="lg:hidden flex items-center gap-5">
-            <Cart />
+          
             <button
               onClick={handleToggle}
               className={`text-2xl text-white ${

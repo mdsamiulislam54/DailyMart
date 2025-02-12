@@ -5,15 +5,17 @@ import { Link, useNavigate } from "react-router";
 import { BiLogoGooglePlusCircle, BiLogoFacebookCircle } from "react-icons/bi";
 import { useDarkMode } from "../ContextApi/DarkModeApi";
 import { CreateuserAuthenticationContext } from "../ContextApi/UserAuthentication";
-import { updateProfile } from "firebase/auth";
+import { updateProfile, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const Registraion = () => {
-  const { UserInfo, registeruser, user,userCustomData } = useContext(
+  const { UserInfo, registeruser, user,userCustomData ,loginGoogleHandler} = useContext(
     CreateuserAuthenticationContext
   );
   const { darkMode } = useDarkMode();
   const [sucessMessage, setSuccessMessage] = useState("");
   const [error, setError] = useState("");
+    const [showPassword, setShowpassword] = useState(false);
+    const [termsCheck , settermsCheck] = useState(false)
   const navigate = useNavigate();
 
   const clearFrom = useRef();
@@ -26,7 +28,9 @@ const Registraion = () => {
       return () => clearTimeout(timer);
     }
   }, [sucessMessage, error]);
-
+  const ShowPassword =()=>{
+    setShowpassword(!showPassword)
+  }
   const handleForm = (e) => {
     e.preventDefault();
     const from = clearFrom.current;
@@ -41,6 +45,9 @@ const Registraion = () => {
     if (password !== confirmPassword) {
       setError("Password and Confirm Password should be the same");
       return;
+    }else if(!termsCheck){
+      setError('You must agree to the terms and conditions')
+      return
     }
 
     registeruser(email, confirmPassword).then((result) => {
@@ -77,6 +84,33 @@ const Registraion = () => {
       console.log("Registration Successful");
     });
   };
+//restration with google 
+const googleHandler = () => {
+  loginGoogleHandler()
+    .then((result) => {
+      const user = result.user;
+      setSuccessMsg("Registration Successful!");
+      
+      // Store user info
+      setUser({
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+        uid: user.uid,
+      });
+
+      // If needed, you can call userCustomData
+      userCustomData({
+        name: user.displayName,
+        email: user.email,
+        uid: user.uid,
+      });
+
+    })
+    .catch((error) => {
+      setErrorMsg(error.message);
+    });
+};
 
   return (
     <div className={`z-10${darkMode ? "bg-text" : "bg-background"}`}>
@@ -156,7 +190,7 @@ const Registraion = () => {
                   className={` border border-gray-400 p-2 rounded-2xl  ${
                     darkMode ? "placeholder-gray-300 " : "placeholder-gray-600"
                   } `}
-                  type="password"
+                  type={showPassword ? "text":"password"}
                   name="password"
                   placeholder="Enter Your Password"
                   required
@@ -166,14 +200,14 @@ const Registraion = () => {
                   className={` border border-gray-400 p-2 rounded-2xl  ${
                     darkMode ? "placeholder-gray-300 " : "placeholder-gray-600"
                   } `}
-                  type="password"
+                  type={showPassword ? "text":"password"}
                   name="confirmPassword"
                   placeholder="Enter Your Repassword"
                   required
                 />
                 <div className="flex justify-between my-6">
                   <div className="flex gap-2 items-center">
-                    <input type="checkbox" name="" id="checkboxShowPassword" />
+                    <input onChange={ShowPassword} type="checkbox" name="" id="checkboxShowPassword" />
                     <label
                       htmlFor="checkboxShowPassword"
                       className="text-base cursor-pointer"
@@ -183,6 +217,8 @@ const Registraion = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <input
+                      onChange={((e)=> settermsCheck(e.target.checked))}
+                      checked={termsCheck}
                       type="checkbox"
                       name="condition"
                       id="termsCondition"
@@ -219,6 +255,7 @@ const Registraion = () => {
                 <div>
                   <button
                     type="button"
+                    onClick={googleHandler}
                     className={`flex items-center gap-3 w-full justify-center p-2 rounded-2xl text-xl font-medium mb-5 cursor-pointer ${
                       darkMode
                         ? "hover:bg-gray-300 bg-background text-text"
