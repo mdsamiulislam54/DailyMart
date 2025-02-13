@@ -8,7 +8,7 @@ const DarkModeButton = () => {
   return (
     <button
       onClick={toggleDarkMode}
-      className="flex relative items-center justify-between px-8 py-2  rounded-3xl border border-gray-400 "
+      className="flex relative items-center justify-between px-8 py-4  rounded-3xl border bg-text "
     >
       
       <FaSun

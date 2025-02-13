@@ -45,7 +45,7 @@ const MenuItem = () => {
           {/* Dropdown Menu */}
           <div
             className={`absolute top-[45px] left-0 w-[700px] z-40 shadow-lg rounded-md overflow-hidden transform transition-all duration-500 ease-in-out 
-              ${darkMode ? "":"bg-background"}
+              ${darkMode ? "bg-text":"bg-background"}
               ${dropDown ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-5 invisible"}`}
           >
             <ul className="p-4 grid grid-cols-2 gap-5">

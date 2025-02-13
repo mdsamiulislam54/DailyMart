@@ -49,29 +49,30 @@ const Slider = () => {
           />
 
           <motion.div
-          key={currentIndex}
+            key={currentIndex}
             initial={{ x: -200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="absolute top-2/12 left-[172px] w-5/12 flex flex-col items-start gap-10 "
           >
-               <h3 className="text-3xl tracking-wider font-medium text-gray-600">
+            <h3 className="text-3xl tracking-wider font-medium text-gray-600">
               {images[currentIndex].title}
             </h3>
-            <h1 className="text-5xl leading-18 text-gray-600 ">
+            <h1 className="text-5xl leading-18 text-gray-600 font-bold ">
               {headingParts[0]}
-              <span className="text-accent font-bold text-6xl">{discountText}</span>
+              <span className="text-accent font-bold text-6xl">
+                {discountText}
+              </span>
               {headingParts[1]}
             </h1>
             <motion.button
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      className="bg-primary text-white px-6 py-3 rounded-lg shadow-lg"
-    >
-      {images[currentIndex].btntext}
-    </motion.button>
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="bg-primary text-white px-6 py-3 rounded-lg shadow-lg cursor-pointer"
+            >
+              {images[currentIndex].btntext}
+            </motion.button>
           </motion.div>
-          
         </div>
       ) : (
         <div>No images available</div>
