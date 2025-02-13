@@ -1,0 +1,25 @@
+[
+    {   
+        "id":0,
+        "images":"../src/assets/banner-1.jpg",
+        "title":"✨Big Sale on Women's Fashion✨",
+        "heading":"💃 Upgrade Your Style with 50% OFF – Only on DailyMaet!",
+        "btntext":"🛍️ Grab Your Deal Now 🚀"
+    },
+    {
+        "id":1,
+        "images":"../src/assets/banner-3.jpg",
+        "title":"🥦 Fresh & Healthy Deal! 🥕",
+        "heading":"🛒 Get 40% OFF on All Grocery & Vegetables – Only on DailyMaet!",
+        "btntext":"Grab Your Fresh Deal Now 🚀"
+    },
+    {
+        "id":2,
+        "images":"../src/assets/banner-4.png",
+        "title":"🐶 Big Pet Sale! 🐾",
+        "heading":"🦴 60% OFF on All Pet Supplies – Only on DailyMaet!",
+        "btntext":"Shop Now & Save! 🚀"
+    }
+    
+
+]
