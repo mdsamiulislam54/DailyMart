@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <div
-    className={` sticky top-0 w-full mx-auto px-4 z-50 shadow-lg ${
+    className={` sticky top-0 w-full mx-auto px-4 z-100 shadow-lg ${
       darkMode ? "bg-text text-white" : " text-text"
     } ${ scrollY > 0 ? 'bg-background':'bg-transparent'} ` }
   >
@@ -34,16 +34,16 @@ const Navbar = () => {
       {/* TopNavber */}
       <TopNavbar/>
       {/* TopNavber */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center flex-row-reverse lg:flex-row justify-between">
           
           <div className="lg:block hidden">
             <MenuItem />
           </div>
-          <div className="lg:block hidden">
+          <div className="">
             <Cart/>
           </div>
 
-          <div className="lg:hidden flex items-center gap-5">
+          <div className="lg:hidden flex items-center gap-5 ">
           
             <button
               onClick={handleToggle}
@@ -57,16 +57,21 @@ const Navbar = () => {
 
           {
             <div
-              className={`lg:hidden fixed right-0 w-6/12 h-[100vh] bg-Primary p-4 
+              className={`lg:hidden absolute right-0 w-[100%] h-[100vh]  bg-primary p-4 
                 transition-all duration-500 ease-in-out transform 
-                ${isOpen ? "top-14 opacity-100" : "top-full opacity-0"}`}
+                ${isOpen ? "top-0 opacity-100" : "top-full opacity-0"}`}
               style={{
-                position: "fixed",
+                position: "absolute",
                 right: "0",
                 transform: "translateX(0%)",
               }}
             >
-              <MobilMenuItem />
+             <div className="">
+              <button onClick={handleToggle}>
+              <TfiClose size={30}/>
+              </button>
+             <MobilMenuItem />
+             </div>
             </div>
           }
         </div>

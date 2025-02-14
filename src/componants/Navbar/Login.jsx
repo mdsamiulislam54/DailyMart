@@ -50,18 +50,18 @@ const Login = () => {
         <li className="">
           {isShow ? (
             <li
-              className={`absolute bottom-[-150px] left-0 ${
+              className={`absolute bottom-[-180px] h-auto left-0 py-2 ${
                 darkMode
                   ? "bg-text rounded-2xl text-white"
                   : "bg-text rounded-2xl text-white"
-              } w-8/12 h-30 flex  flex-col justify-center p-2 `}
+              } w-8/12 h-30 flex  flex-col justify-center p-5`}
             >
-              <div className="flex justify-end mb-2">
+              <div className="flex justify-end py-2">
                 <button onClick={handleShow}>
                   <IoIosCloseCircle size={20} />
                 </button>
               </div>
-              <Link className="text-xl font-medium flex flex-col gap-5 mb-2">
+              <Link className="text-xl font-medium flex flex-col gap-5">
                 <p className="text-sm text-center">Change Theme</p>
                 <DarkModeButton />
               </Link>
