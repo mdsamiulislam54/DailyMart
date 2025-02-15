@@ -89,7 +89,8 @@ const googleHandler = () => {
   loginGoogleHandler()
     .then((result) => {
       const user = result.user;
-      setSuccessMsg("Registration Successful!");
+      setSuccessMessage("Registration Successful!");
+      navigate('/userprofile')
       
       // Store user info
       setUser({
@@ -103,12 +104,12 @@ const googleHandler = () => {
       userCustomData({
         name: user.displayName,
         email: user.email,
-        uid: user.uid,
+        uid: user.uid
       });
 
     })
     .catch((error) => {
-      setErrorMsg(error.message);
+      setError(error.message);
     });
 };
 

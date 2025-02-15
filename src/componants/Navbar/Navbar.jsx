@@ -10,6 +10,7 @@ import MobilMenuItem from "./MobilMenuItem";
 import { useState ,useEffect} from "react";
 import { useWindowScrollY } from "../ContextApi/WindowScrollY";
 import TopNavbar from "./TopNavbar";
+import DropdownMenu from "./DropDownMenu";
 
 const Navbar = () => {
   const { darkMode } = useDarkMode();
@@ -42,6 +43,9 @@ const Navbar = () => {
           <div className="">
             <Cart/>
           </div>
+          <div className="lg:hidden">
+          <DropdownMenu/>
+          </div>
 
           <div className="lg:hidden flex items-center gap-5 ">
           
@@ -54,12 +58,13 @@ const Navbar = () => {
               {isOpen ? <TfiClose className={`${darkMode ? 'text-white':'text-text'}`} /> : <TfiAlignRight  className={`${darkMode ? 'text-white':'text-text'}`} />}
             </button>
           </div>
+         
 
           {
             <div
-              className={`lg:hidden absolute right-0 w-[100%] h-[100vh]  bg-primary p-4 
+              className={`lg:hidden absolute right-0 w-[100%] h-[100vh] p-4 
                 transition-all duration-500 ease-in-out transform 
-                ${isOpen ? "top-0 opacity-100" : "top-full opacity-0"}`}
+                ${isOpen ? "top-0 opacity-100" : "top-full opacity-0"} ${darkMode ? "bg-text":"bg-background"}`}
               style={{
                 position: "absolute",
                 right: "0",
@@ -68,12 +73,14 @@ const Navbar = () => {
             >
              <div className="">
               <button onClick={handleToggle}>
-              <TfiClose size={30}/>
+              <TfiClose size={20}/>
               </button>
-             <MobilMenuItem />
+             {isOpen && <MobilMenuItem  isOpen={isOpen} setIsOpen={setIsOpen}/>}
              </div>
+            
             </div>
           }
+         
         </div>
       
       </div>

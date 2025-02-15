@@ -56,8 +56,8 @@ const Login = () => {
                   : "bg-text rounded-2xl text-white"
               } w-8/12 h-30 flex  flex-col justify-center p-5`}
             >
-              <div className="flex justify-end py-2">
-                <button onClick={handleShow}>
+              <div className="flex justify-end py-2 ">
+                <button onClick={handleShow} className="">
                   <IoIosCloseCircle size={20} />
                 </button>
               </div>
@@ -71,7 +71,7 @@ const Login = () => {
           )}
         </li>
 
-        <button onClick={handleShow}>
+        <button onClick={handleShow} className="hidden lg:block">
           <HiOutlineSquares2X2 size={30} />
         </button>
       </ul>

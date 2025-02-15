@@ -13,7 +13,7 @@ import { CreateuserAuthenticationContext } from "../ContextApi/UserAuthenticatio
 
 const LoginPage = () => {
   const { darkMode } = useDarkMode();
-  const { loginuser, Userinfo } = useContext(CreateuserAuthenticationContext);
+  const { loginuser, Userinfo,loginGoogleHandler } = useContext(CreateuserAuthenticationContext);
 
   const [errorMessage, setErrorMessage] = useState("");
   const [sucessMessage, setSucessMessage] = useState("");
@@ -62,6 +62,34 @@ const ShowPassword =()=>{
         setErrorMessage("Invalid Email or Password", error);
       });
   };
+
+  const googleHandler= ()=>{
+    loginGoogleHandler()
+    .then((result) => {
+      const user = result.user;
+      setSucessMessage("Registration Successful!");
+      navigate('/userprofile')
+      
+      // Store user info
+      setUser({
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+        uid: user.uid
+      });
+
+      // If needed, you can call userCustomData
+      userCustomData({
+        name: user.displayName,
+        email: user.email,
+        uid: user.uid,
+      });
+
+    })
+    .catch((error) => {
+      setError(error.message);
+    });
+  }
 
   return (
     <div className={` py-4 h-[100%] text-white ${darkMode ? "bg-text" : ""}`}>
@@ -155,6 +183,7 @@ const ShowPassword =()=>{
 
                 <div>
                   <button
+                  onClick={googleHandler}
                     type="button"
                     className={`flex items-center gap-3 w-full justify-center p-2 rounded-2xl text-xl font-medium mb-5 cursor-pointer  transition-all duration-300 ${
                       darkMode

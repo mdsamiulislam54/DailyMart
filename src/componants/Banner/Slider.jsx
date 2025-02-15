@@ -41,7 +41,7 @@ const Slider = () => {
    if(images.length===0 ||isHover) return;
    const intervalId = setInterval(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-},3000)
+},10000)
 return () => clearInterval(intervalId)
   },[images.length,isHover])
 
